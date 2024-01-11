@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample App</title>
+    <!-- Built frontend  -->
+    <script defer="defer" src="/static/main.js"></script>
+
+    <!-- Semrush Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+          crossorigin />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.75;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .spinner::before {
+            position: absolute;
+            content: "";
+            width: 50px;
+            height: 50px;
+            border: 5px solid lightgray;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            box-sizing: border-box;
+            top: calc(50% - 25px);
+            left: calc(50% - 25px);
+            animation: rotation 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Root element for React -->
+    <div id="app-root">
+        <div id="app-spinner" class="spinner"></div>
+    </div>
+
+    <script>
+        window.addEventListener("load", () => {
+            const root = document.getElementById("app-root");
+
+            setTimeout(() => {
+                const spinner = document.getElementById("app-spinner");
+
+                if (spinner) {
+                    root.innerHTML = "If you see this text, you may have forgotten to build frontend of this app";
+                }
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
