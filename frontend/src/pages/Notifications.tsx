@@ -1,4 +1,4 @@
-import React, { type FC, useState } from "react";
+import React, { type FC } from "react";
 import { Layout } from "../components/Layout";
 import { SendNotificationCard } from "../components/Widgets/SendNotificationCard";
 import { SubscriptionStatusCard } from "../components/Widgets/SubscriptionStatusCard";
@@ -9,12 +9,7 @@ import LinkIcon from "@semcore/ui/icon/LinkExternal/l";
 import { PageHeader } from "../components/PageHeader";
 import { Paragraph } from "../components/Paragraph";
 
-interface Props {
-  jwt: string;
-}
-
-export const Notifications: FC<Props> = ({ jwt }) => {
-  const [disabled, setDisabled] = useState(false);
+export const Notifications: FC = () => {
   const navigate = useNavigate();
 
   const handleClick = (path: string): void => {
@@ -61,19 +56,11 @@ export const Notifications: FC<Props> = ({ jwt }) => {
         .
       </Paragraph>
 
-      <SubscriptionListCard
-        jwt={jwt}
-        disabled={disabled}
-        setDisabled={setDisabled}
-      />
+      <SubscriptionListCard />
 
-      <SubscriptionStatusCard
-        jwt={jwt}
-        disabled={disabled}
-        setDisabled={setDisabled}
-      />
+      <SubscriptionStatusCard />
 
-      <SendNotificationCard disabled={disabled} setDisabled={setDisabled} />
+      <SendNotificationCard />
     </Layout>
   );
 };

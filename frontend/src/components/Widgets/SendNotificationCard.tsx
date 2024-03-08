@@ -4,12 +4,8 @@ import Input from "@semcore/ui/input";
 import { WidgetButton } from "../WidgetButton";
 import { CodeSnippet } from "../CodeSnippet";
 
-interface Props {
-  disabled: boolean;
-  setDisabled: (state: boolean) => void;
-}
-
-export const SendNotificationCard: FC<Props> = ({ disabled, setDisabled }) => {
+export const SendNotificationCard: FC = () => {
+  const [disabled, setDisabled] = useState(false);
   const [notificationTrigger, setNotificationTrigger] = useState("");
   const [sendNotificationStatus, setSendNotificationStatus] = useState("");
 
@@ -19,30 +15,27 @@ export const SendNotificationCard: FC<Props> = ({ disabled, setDisabled }) => {
       : "";
   }, [sendNotificationStatus]);
 
-  const sendNotificationStatusHandler = (): void => {
-    setDisabled(true);
+  const sendNotificationStatusHandler = async (): Promise<void> => {
+    try {
+      setDisabled(true);
 
-    window.SM.client("getAccessToken")
-      .then((token: string) => {
-        fetch(`/s2s/send-notification?trigger=${notificationTrigger}`, {
+      const token = await window.SM.client("getAccessToken");
+      const response = await fetch(
+        `/s2s/send-notification?trigger=${notificationTrigger}`,
+        {
           method: "POST",
           headers: { jwt: token },
-        })
-          .then((response) => response.json())
-          .then((json) => {
-            setSendNotificationStatus(json);
-          })
-          .catch((error) => {
-            setSendNotificationStatus(error);
-            console.error(error);
-          });
-      })
-      .catch((error: Error) => {
-        setSendNotificationStatus(error.message);
-      })
-      .finally(() => {
-        setDisabled(false);
-      });
+        },
+      );
+      const json = await response.json();
+
+      setSendNotificationStatus(json);
+    } catch (error) {
+      setSendNotificationStatus(error as string);
+      console.error(error);
+    } finally {
+      setDisabled(false);
+    }
   };
 
   return (

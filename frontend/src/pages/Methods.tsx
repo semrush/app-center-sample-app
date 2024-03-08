@@ -4,7 +4,8 @@ import Radio, { RadioGroup } from "@semcore/ui/radio";
 import { Layout } from "../components/Layout";
 import { SDKCard } from "../components/Widgets/SDKCard";
 import { PermissionPoliciesCard } from "../components/Widgets/PermissionPoliciesCard";
-import { PushReplaceUrlCards } from "../components/Widgets/PushReplaceUrlCards";
+import { PushUrlCard } from "../components/Widgets/PushUrlCard";
+import { ReplaceUrlCard } from "../components/Widgets/ReplaceUrlCard";
 import { AddCallbackCard } from "../components/Widgets/AddCallbackCard";
 import { ConfigCard } from "../components/Widgets/ConfigCard";
 import { PageHeader } from "../components/PageHeader";
@@ -30,6 +31,7 @@ export const Methods: FC = () => {
           </Link.Addon>
         </Link>
       </PageHeader>
+
       <Paragraph mb={6}>
         JS SDK provides methods for getting information about app, asking user
         to perform specific actions (e.g. to make in-app purchase) or
@@ -38,7 +40,9 @@ export const Methods: FC = () => {
 
       <ConfigCard />
 
-      <PushReplaceUrlCards />
+      <PushUrlCard />
+
+      <ReplaceUrlCard />
 
       <AddCallbackCard />
 

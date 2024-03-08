@@ -8,22 +8,20 @@ interface Props {
   jwtFromUrl: string;
 }
 
-export const JWTCard: FC<Props> = (props) => {
+export const JWTCard: FC<Props> = ({ jwtFromUrl }) => {
   const [responseText, setResponseText] = useState("");
   const [spinnerOn, setSpinnerOn] = useState(false);
 
-  const handleClick = (): void => {
-    setSpinnerOn(true);
-    window.SM.client("getAccessToken")
-      .then((data: string) => {
-        setResponseText(data);
-      })
-      .catch((error: Error) => {
-        setResponseText(error.message);
-      })
-      .finally(() => {
-        setSpinnerOn(false);
-      });
+  const handleClick = async (): Promise<void> => {
+    try {
+      setSpinnerOn(true);
+      const token = await window.SM.client("getAccessToken");
+      setResponseText(token);
+    } catch (error) {
+      setResponseText((error as Error).message);
+    } finally {
+      setSpinnerOn(false);
+    }
   };
 
   return (
@@ -37,7 +35,7 @@ export const JWTCard: FC<Props> = (props) => {
       </Card.Header>
       <Card.Body>
         <CodeSnippet
-          code={JSON.stringify(decodeJwt(props.jwtFromUrl), null, 4)}
+          code={JSON.stringify(decodeJwt(jwtFromUrl), null, 4)}
           mt={0}
         />
 

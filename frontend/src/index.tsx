@@ -30,12 +30,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<JWT jwt={iframeJwtToken} />} />
           <Route path="/methods" element={<Methods />} />
-          <Route
-            path="/notifications"
-            element={<Notifications jwt={iframeJwtToken} />}
-          />
+          <Route path="/notifications" element={<Notifications />} />
           <Route path="/reports" element={<Reports jwt={iframeJwtToken} />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound jwt={iframeJwtToken} />} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>
@@ -46,6 +43,5 @@ initAppCenterSDK(); // This function creates a global object SM, then we can use
 setInitialUrl();
 
 // Rendering your application after SM initialization
-window.SM.init().then(() => {
-  ReactDOM.createRoot(document.getElementById("app-root")!).render(<App />);
-});
+await window.SM.init();
+ReactDOM.createRoot(document.getElementById("app-root")!).render(<App />);

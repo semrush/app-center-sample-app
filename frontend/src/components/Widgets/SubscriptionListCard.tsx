@@ -4,12 +4,6 @@ import { ApiMetadata } from "../../common";
 import { WidgetButton } from "../WidgetButton";
 import { CodeSnippet } from "../CodeSnippet";
 
-interface Props {
-  jwt: string;
-  disabled: boolean;
-  setDisabled: (state: boolean) => void;
-}
-
 interface Subscription {
   id: number;
   name: string;
@@ -24,7 +18,8 @@ interface SubscriptionListResponse {
   };
 }
 
-export const SubscriptionListCard: FC<Props> = ({ disabled, setDisabled }) => {
+export const SubscriptionListCard: FC = () => {
+  const [disabled, setDisabled] = useState(false);
   const [subscriptionList, setSubscriptionList] = useState<
     SubscriptionListResponse | string
   >();
@@ -33,30 +28,24 @@ export const SubscriptionListCard: FC<Props> = ({ disabled, setDisabled }) => {
     return JSON.stringify(subscriptionList, null, 4);
   }, [subscriptionList]);
 
-  const subscriptionListHandler = (): void => {
-    setDisabled(true);
+  const subscriptionListHandler = async (): Promise<void> => {
+    try {
+      setDisabled(true);
 
-    window.SM.client("getAccessToken")
-      .then((token: string) => {
-        fetch("/s2s/subscriptions-list", {
-          method: "GET",
-          headers: { jwt: token },
-        })
-          .then((response) => response.json())
-          .then((json) => {
-            setSubscriptionList(json);
-          })
-          .catch((error) => {
-            setSubscriptionList(error);
-            console.error(error);
-          });
-      })
-      .catch((error: Error) => {
-        setSubscriptionList(error.message);
-      })
-      .finally(() => {
-        setDisabled(false);
+      const token = await window.SM.client("getAccessToken");
+      const response = await fetch("/s2s/subscriptions-list", {
+        method: "GET",
+        headers: { jwt: token },
       });
+      const json = await response.json();
+
+      setSubscriptionList(json);
+    } catch (error) {
+      setSubscriptionList(error as string);
+      console.error(error);
+    } finally {
+      setDisabled(false);
+    }
   };
 
   return (

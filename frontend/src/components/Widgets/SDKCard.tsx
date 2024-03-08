@@ -25,16 +25,15 @@ export const SDKCard: FC<PropsWithChildren<Props>> = ({
 }) => {
   const [spinnerOn, setSpinnerOn] = useState(false);
 
-  const handleClick = (): void => {
-    setSpinnerOn(true);
-    method()
-      .then()
-      .catch((error: Error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setSpinnerOn(false);
-      });
+  const handleClick = async (): Promise<void> => {
+    try {
+      setSpinnerOn(true);
+      await method();
+    } catch (error) {
+      console.error((error as Error).message);
+    } finally {
+      setSpinnerOn(false);
+    }
   };
 
   return (

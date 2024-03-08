@@ -5,12 +5,6 @@ import { ApiMetadata } from "../../common";
 import { WidgetButton } from "../WidgetButton";
 import { CodeSnippet } from "../CodeSnippet";
 
-interface Props {
-  jwt: string;
-  disabled: boolean;
-  setDisabled: (state: boolean) => void;
-}
-
 interface SubscriptionStatusResponse {
   meta: ApiMetadata;
   data: {
@@ -18,10 +12,8 @@ interface SubscriptionStatusResponse {
   };
 }
 
-export const SubscriptionStatusCard: FC<Props> = ({
-  disabled,
-  setDisabled,
-}) => {
+export const SubscriptionStatusCard: FC = () => {
+  const [disabled, setDisabled] = useState(false);
   const [subscriptionId, setSubscriptionId] = useState("");
   const [subscriptionStatus, setSubscriptionStatus] = useState<
     SubscriptionStatusResponse | string
@@ -31,30 +23,27 @@ export const SubscriptionStatusCard: FC<Props> = ({
     return JSON.stringify(subscriptionStatus, null, 4);
   }, [subscriptionStatus]);
 
-  const subscriptionStatusHandler = (): void => {
-    setDisabled(true);
+  const subscriptionStatusHandler = async (): Promise<void> => {
+    try {
+      setDisabled(true);
 
-    window.SM.client("getAccessToken")
-      .then((token: string) => {
-        fetch(`/s2s/subscriptions-status?subscription_id=${subscriptionId}`, {
+      const token = await window.SM.client("getAccessToken");
+      const response = await fetch(
+        `/s2s/subscriptions-status?subscription_id=${subscriptionId}`,
+        {
           method: "GET",
           headers: { jwt: token },
-        })
-          .then((response) => response.json())
-          .then((json) => {
-            setSubscriptionStatus(json);
-          })
-          .catch((error) => {
-            setSubscriptionStatus(error);
-            console.error(error);
-          });
-      })
-      .catch((error: Error) => {
-        setSubscriptionStatus(error.message);
-      })
-      .finally(() => {
-        setDisabled(false);
-      });
+        },
+      );
+      const json = await response.json();
+
+      setSubscriptionStatus(json);
+    } catch (error) {
+      setSubscriptionStatus(error as string);
+      console.error(error);
+    } finally {
+      setDisabled(false);
+    }
   };
 
   return (

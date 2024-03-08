@@ -8,53 +8,47 @@ export const S2SCard: FC = () => {
   const [issuerText, setIssuerText] = useState("");
   const [spinnerIssuerOn, setSpinnerIssuerOn] = useState(false);
 
-  const handleIssuerClick = useCallback(() => {
-    setSpinnerIssuerOn(true);
+  const handleIssuerClick = useCallback(async () => {
+    try {
+      setSpinnerIssuerOn(true);
 
-    window.SM.client("getAccessToken")
-      .then((token: string) => {
-        return fetch(`/s2s/issuer?jwt=${token}`, { method: "GET" });
-      })
-      .then((response) => {
-        return response.text();
-      })
-      .then((text) => {
-        const formattedResp = JSON.stringify(decodeJwt(text), null, 4);
-
-        setIssuerText(formattedResp);
-        setSpinnerIssuerOn(false);
-      })
-      .catch((error) => {
-        setIssuerText(error);
-      })
-      .finally(() => {
-        setSpinnerIssuerOn(false);
+      const token = await window.SM.client("getAccessToken");
+      const response = await fetch(`/s2s/issuer?jwt=${token}`, {
+        method: "GET",
       });
+      const responseText = await response.text();
+
+      if (response.status == 200) {
+        setIssuerText(JSON.stringify(decodeJwt(responseText), null, 4));
+      }
+    } catch (error) {
+      setIssuerText(error as string);
+    } finally {
+      setSpinnerIssuerOn(false);
+    }
   }, []);
 
   const [viewerStatusText, setViewerStatusText] = useState("");
   const [spinnerViewerStatusOn, setSpinnerViewerStatusOn] = useState(false);
 
-  const handleViewerStatusClick = useCallback(() => {
-    setSpinnerViewerStatusOn(true);
+  const handleViewerStatusClick = useCallback(async () => {
+    try {
+      setSpinnerViewerStatusOn(true);
 
-    window.SM.client("getAccessToken")
-      .then((token: string) => {
-        return fetch(`/s2s/viewer_status?jwt=${token}`, { method: "GET" });
-      })
-      .then((response) => {
-        return response.text();
-      })
-      .then((text) => {
-        setViewerStatusText(text);
-        setSpinnerIssuerOn(false);
-      })
-      .catch((error) => {
-        setViewerStatusText(error);
-      })
-      .finally(() => {
-        setSpinnerViewerStatusOn(false);
+      const token = await window.SM.client("getAccessToken");
+      const response = await fetch(`/s2s/viewer_status?jwt=${token}`, {
+        method: "GET",
       });
+      const responseText = await response.text();
+
+      if (response.status == 200) {
+        setViewerStatusText(responseText);
+      }
+    } catch (error) {
+      setViewerStatusText(error as string);
+    } finally {
+      setSpinnerViewerStatusOn(false);
+    }
   }, []);
 
   return (

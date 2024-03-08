@@ -87,7 +87,7 @@ async def get_jwt_from_issuer(
         s2s_jwt = await _get_jwt_from_issuer()
         return web.json_response(s2s_jwt, dumps=pretty_print_json)
     except Exception as e:
-        return web.HTTPServerError(body=f"Python exception: {e}")
+        return web.HTTPInternalServerError(body=f"Python exception: {e}")
 
 
 @validate_jwt
@@ -115,7 +115,7 @@ async def get_viewer_status(
                     )
                 return web.json_response(await response.json(), dumps=pretty_print_json)
     except Exception as e:
-        return web.HTTPServerError(body=f"Python exception: {e}")
+        return web.HTTPInternalServerError(body=f"Python exception: {e}")
 
 
 async def _get_jwt_from_issuer() -> dict:
@@ -193,11 +193,11 @@ async def subscriptions_list(
                 headers={"Authorization": f"Bearer {s2s_jwt['jwt']}"},
             ) as response:
                 if response.status != 200:
-                    return web.HTTPServerError(body=await response.text())
+                    return web.HTTPInternalServerError(body=await response.text())
                 return web.json_response(await response.json(), dumps=pretty_print_json)
     except Exception as e:
         logger.error(e)
-        return web.HTTPServerError(body=json.dumps({"exception": e}))
+        return web.HTTPInternalServerError(body=json.dumps({"exception": str(e)}))
 
 
 @validate_jwt
@@ -219,11 +219,11 @@ async def subscriptions_status(
                 headers={"Authorization": f"Bearer {s2s_jwt['jwt']}"},
             ) as response:
                 if response.status != 200:
-                    return web.HTTPServerError(body=await response.text())
+                    return web.HTTPInternalServerError(body=await response.text())
                 return web.json_response(await response.json(), dumps=pretty_print_json)
     except Exception as e:
         logger.error(e)
-        return web.HTTPServerError(body=json.dumps({"exception": e}))
+        return web.HTTPInternalServerError(body=json.dumps({"exception": str(e)}))
 
 
 @validate_jwt
@@ -253,8 +253,8 @@ async def send_notification(
                 },
             ) as response:
                 if response.status != 201:
-                    return web.HTTPServerError(body=await response.text())
+                    return web.HTTPInternalServerError(body=await response.text())
                 return web.json_response(await response.json(), dumps=pretty_print_json)
     except Exception as e:
         logger.error(e)
-        return web.HTTPServerError(body=json.dumps({"exception": e}))
+        return web.HTTPInternalServerError(body=json.dumps({"exception": str(e)}))

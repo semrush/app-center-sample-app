@@ -7,27 +7,23 @@ export const PermissionPoliciesCard: FC = () => {
   const videoElement = React.createRef<HTMLVideoElement>();
   const [isVideoShown, setVideoShown] = useState(false);
 
-  const handleDisplayCaptureClick = (): void => {
-    navigator.mediaDevices
-      .getDisplayMedia({})
-      .then((mediaStream) => {
-        videoElement.current!.srcObject = mediaStream;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleDisplayCaptureClick = async (): Promise<void> => {
+    try {
+      videoElement.current!.srcObject =
+        await navigator.mediaDevices.getDisplayMedia({});
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleCameraClick = (): void => {
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then((mediaStream) => {
-        videoElement.current!.srcObject = mediaStream;
-        setVideoShown(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleCameraClick = async (): Promise<void> => {
+    try {
+      videoElement.current!.srcObject =
+        await navigator.mediaDevices.getUserMedia({ video: true });
+      setVideoShown(true);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

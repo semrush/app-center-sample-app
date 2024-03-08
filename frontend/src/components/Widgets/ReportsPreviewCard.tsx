@@ -7,32 +7,30 @@ import { CodeSnippet } from "../CodeSnippet";
 interface Props {}
 
 export const ReportsPreviewCard: FC<Props> = () => {
-  const [spinnerOn, setSpinnerOn] = useState(false);
+  const [spinnerOn, setSpinnerOn] = useState(true);
   const [reportData, setReportData] = useState<ReportData>();
   const [errorData, setErrorData] = useState("");
 
-  useEffect(() => {
-    setSpinnerOn(true);
-
-    window.SM.client("getAccessToken")
-      .then((jwt: string) => {
-        const url = new URL("/api/report", window.location.href);
-        url.searchParams.append("jwt", jwt);
-
-        return url;
-      })
-      .then((url: URL) => {
-        return fetch(url.href);
-      })
-      .then((resp) => resp.json())
-      .then((json) => setReportData(json))
-      .catch((error: Error) => {
-        setErrorData(error.message);
-        console.error(error);
-      })
-      .finally(() => {
-        setSpinnerOn(false);
+  const fetchReport = async () => {
+    try {
+      const token = await window.SM.client("getAccessToken");
+      const response = await fetch("/api/report", {
+        method: "GET",
+        headers: { jwt: token },
       });
+      const json = await response.json();
+
+      setReportData(json);
+    } catch (error) {
+      setErrorData((error as Error).message);
+      console.error(error);
+    } finally {
+      setSpinnerOn(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchReport();
   }, []);
 
   return (

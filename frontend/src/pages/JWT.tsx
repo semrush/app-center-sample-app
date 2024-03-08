@@ -12,7 +12,7 @@ interface Props {
   jwt: string;
 }
 
-export const JWT: FC<Props> = (props) => {
+export const JWT: FC<Props> = ({ jwt }) => {
   return (
     <Layout>
       <PageHeader>
@@ -43,7 +43,7 @@ export const JWT: FC<Props> = (props) => {
         .
       </Paragraph>
 
-      <JWTCard jwtFromUrl={props.jwt} />
+      <JWTCard jwtFromUrl={jwt} />
 
       <S2SCard />
     </Layout>

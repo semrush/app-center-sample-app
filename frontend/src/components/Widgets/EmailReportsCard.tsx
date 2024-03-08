@@ -1,29 +1,15 @@
 import Card from "@semcore/ui/card";
 import React, { type FC, useMemo } from "react";
 import Link from "@semcore/ui/link";
-import { decodeJwt, JWTPayload } from "jose";
+import { decodeJwt } from "jose";
 import { CodeSnippet } from "../CodeSnippet";
 import { Paragraph } from "../Paragraph";
 import { WidgetButton } from "../WidgetButton";
+import { JwtInfo } from "../../common";
 
 interface Props {
   jwt: string;
 }
-
-type JwtInfo = JWTPayload & {
-  active_products: string[];
-  email_subscription?: {
-    enabled: boolean;
-  };
-  is_app_installed: boolean;
-  is_app_taken_for_free: boolean;
-  is_main_product_active: boolean;
-  is_main_product_trial_available: boolean;
-  lang: string;
-  product_trials_available: string[];
-  url: string;
-  viewer_id: string;
-};
 
 export const EmailReportsCard: FC<Props> = ({ jwt }) => {
   const jwtInfo = decodeJwt(jwt) as JwtInfo;
