@@ -9,7 +9,7 @@ vanilla JS.
 
 ## Requirements
 
-*  Node.js version `18` or higher.
+*  Node.js version `20` or higher.
 *  Python version `3.11` or higher.
 *  Registered **test** app in Semrush App Center.
    [Learn how to register ›](https://www.semrush.com/apps/docs/join-appcenter).

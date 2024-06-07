@@ -1,8 +1,9 @@
 {
-  "name": "developer-app-center-sample-app",
+  "name": "@semrush/developer-app-center-sample-app",
   "version": "1.0.0",
   "description": "Sample app to demonstrate Semrush App Center API's and capabilities",
   "main": "index.ts",
+  "private": true,
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "build_dev": "NODE_ENV=development webpack",
@@ -34,7 +35,7 @@
   },
   "dependencies": {
     "@semcore/app-center-js-sdk": "0.0.3",
-    "@semcore/ui": "15.26.0",
+    "@semcore/ui": "15.72.0",
     "jose": "4.15.2",
     "prism-react-renderer": "^2.2.0",
     "react": "18.2.0",
