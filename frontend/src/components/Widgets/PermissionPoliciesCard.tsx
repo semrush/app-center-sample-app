@@ -1,6 +1,6 @@
 import React, { type FC, useState } from "react";
-import Card from "@semcore/ui/card";
-import { Flex, Box } from "@semcore/ui/flex-box";
+import Card from "intergalactic/card";
+import { Flex, Box } from "intergalactic/flex-box";
 import { WidgetButton } from "../WidgetButton";
 
 export const PermissionPoliciesCard: FC = () => {

@@ -3,10 +3,10 @@ import React, { type FC } from "react";
 import { Layout } from "../components/Layout";
 import { JWTCard } from "../components/Widgets/JWTCard";
 import { S2SCard } from "../components/Widgets/S2SCard";
-import Link from "@semcore/ui/link";
+import Link from "intergalactic/link";
 import { PageHeader } from "../components/PageHeader";
 import { Paragraph } from "../components/Paragraph";
-import LinkIcon from "@semcore/ui/icon/LinkExternal/l";
+import LinkIcon from "intergalactic/icon/LinkExternal/l";
 
 interface Props {
   jwt: string;

@@ -1,6 +1,8 @@
 import React, { type FC, useState } from "react";
-import Input from "@semcore/ui/input";
-import Radio, { RadioGroup } from "@semcore/ui/radio";
+import Input from "intergalactic/input";
+import Radio, { RadioGroup } from "intergalactic/radio";
+import Link from "intergalactic/link";
+import LinkIcon from "intergalactic/icon/LinkExternal/l";
 import { Layout } from "../components/Layout";
 import { SDKCard } from "../components/Widgets/SDKCard";
 import { PermissionPoliciesCard } from "../components/Widgets/PermissionPoliciesCard";
@@ -10,8 +12,6 @@ import { AddCallbackCard } from "../components/Widgets/AddCallbackCard";
 import { ConfigCard } from "../components/Widgets/ConfigCard";
 import { PageHeader } from "../components/PageHeader";
 import { Paragraph } from "../components/Paragraph";
-import Link from "@semcore/ui/link";
-import LinkIcon from "@semcore/ui/icon/LinkExternal/l";
 
 export const Methods: FC = () => {
   const [productIdValues, setProductIdValues] = useState<string[]>([]);

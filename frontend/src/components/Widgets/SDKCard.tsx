@@ -1,8 +1,8 @@
 import React, { type FC, type PropsWithChildren, useState } from "react";
-import Card from "@semcore/ui/card";
-import Link from "@semcore/ui/link";
-import LinkIcon from "@semcore/ui/icon/LinkExternal/m";
-import { Flex } from "@semcore/ui/flex-box";
+import Card from "intergalactic/card";
+import Link from "intergalactic/link";
+import LinkIcon from "intergalactic/icon/LinkExternal/m";
+import { Flex } from "intergalactic/flex-box";
 import { WidgetButton } from "../WidgetButton";
 
 interface Props {

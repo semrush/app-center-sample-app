@@ -1,5 +1,5 @@
 import React, { type FC, useState, useCallback } from "react";
-import Card from "@semcore/ui/card";
+import Card from "intergalactic/card";
 import { WidgetButton } from "../WidgetButton";
 import { CodeSnippet } from "../CodeSnippet";
 import { decodeJwt } from "jose";

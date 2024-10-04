@@ -1,6 +1,6 @@
 import React, { type FC, useState } from "react";
 import { decodeJwt } from "jose";
-import Card from "@semcore/ui/card";
+import Card from "intergalactic/card";
 import { WidgetButton } from "../WidgetButton";
 import { CodeSnippet } from "../CodeSnippet";
 

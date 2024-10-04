@@ -1,11 +1,11 @@
 import React, { type FC, useEffect } from "react";
-import { Box } from "@semcore/ui/flex-box";
-import Tag from "@semcore/ui/tag";
-import TabLine from "@semcore/ui/tab-line";
-import KeyIcon from "@semcore/ui/icon/Key/m";
-import WebPagesIcon from "@semcore/ui/icon/WebPages/m";
-import Notification from "@semcore/ui/icon/Notification/m";
-import Mail from "@semcore/ui/icon/Mail/m";
+import { Box } from "intergalactic/flex-box";
+import Tag from "intergalactic/tag";
+import TabLine from "intergalactic/tab-line";
+import KeyIcon from "intergalactic/icon/Key/m";
+import WebPagesIcon from "intergalactic/icon/WebPages/m";
+import Notification from "intergalactic/icon/Notification/m";
+import Mail from "intergalactic/icon/Mail/m";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export const PageHeader: FC = () => {

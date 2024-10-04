@@ -1,6 +1,6 @@
 import React, { type FC, type PropsWithChildren } from "react";
 import { PageHeader } from "./PageHeader";
-import { Box } from "@semcore/ui/flex-box";
+import { Box } from "intergalactic/flex-box";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (

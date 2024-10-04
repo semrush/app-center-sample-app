@@ -1,6 +1,6 @@
 import React, { type FC, useMemo, useState } from "react";
-import Card from "@semcore/ui/card";
-import Input from "@semcore/ui/input";
+import Card from "intergalactic/card";
+import Input from "intergalactic/input";
 import { ApiMetadata } from "../../common";
 import { WidgetButton } from "../WidgetButton";
 import { CodeSnippet } from "../CodeSnippet";

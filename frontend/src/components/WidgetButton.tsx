@@ -1,7 +1,7 @@
 import React, { type FC } from "react";
-import Button, { IButtonProps } from "@semcore/ui/button";
-import Tag from "@semcore/ui/tag";
-import { Box } from "@semcore/ui/flex-box";
+import Button, { IButtonProps } from "intergalactic/button";
+import Tag from "intergalactic/tag";
+import { Box } from "intergalactic/flex-box";
 
 type Props = IButtonProps & {
   buttonText: string;

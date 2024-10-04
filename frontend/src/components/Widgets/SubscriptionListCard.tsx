@@ -1,5 +1,5 @@
 import React, { type FC, useMemo, useState } from "react";
-import Card from "@semcore/ui/card";
+import Card from "intergalactic/card";
 import { ApiMetadata } from "../../common";
 import { WidgetButton } from "../WidgetButton";
 import { CodeSnippet } from "../CodeSnippet";

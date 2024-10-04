@@ -1,5 +1,5 @@
 import React, { type FC, type PropsWithChildren } from "react";
-import { Text, type ITextProps } from "@semcore/ui/typography";
+import { Text, type ITextProps } from "intergalactic/typography";
 
 export const PageHeader: FC<PropsWithChildren & ITextProps> = ({
   children,

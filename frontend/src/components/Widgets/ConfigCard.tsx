@@ -1,7 +1,7 @@
 import React, { type FC, useState } from "react";
-import Card from "@semcore/ui/card";
-import Link from "@semcore/ui/link";
-import LinkIcon from "@semcore/ui/icon/LinkExternal/m";
+import Card from "intergalactic/card";
+import Link from "intergalactic/link";
+import LinkIcon from "intergalactic/icon/LinkExternal/m";
 import { WidgetButton } from "../WidgetButton";
 import { CodeSnippet } from "../CodeSnippet";
 

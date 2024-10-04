@@ -1,6 +1,6 @@
-import Card from "@semcore/ui/card";
 import React, { type FC, useMemo } from "react";
-import Link from "@semcore/ui/link";
+import Card from "intergalactic/card";
+import Link from "intergalactic/link";
 import { decodeJwt } from "jose";
 import { CodeSnippet } from "../CodeSnippet";
 import { Paragraph } from "../Paragraph";

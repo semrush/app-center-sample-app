@@ -2,7 +2,7 @@ import React from "react";
 import type { FC } from "react";
 import type { Language } from "prism-react-renderer";
 import { Highlight, themes } from "prism-react-renderer";
-import { Box, BoxProps } from "@semcore/ui/flex-box";
+import { Box, BoxProps } from "intergalactic/flex-box";
 
 type Props = {
   code: string;

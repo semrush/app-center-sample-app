@@ -1,5 +1,5 @@
-import Card from "@semcore/ui/card";
-import SpinContainer from "@semcore/ui/spin-container";
+import Card from "intergalactic/card";
+import SpinContainer from "intergalactic/spin-container";
 import React, { type FC, useEffect, useState } from "react";
 import { type ReportData, ReportTable } from "./ReportTable";
 import { CodeSnippet } from "../CodeSnippet";

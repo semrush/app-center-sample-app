@@ -1,10 +1,10 @@
 import React, { type FC } from "react";
+import { useNavigate } from "react-router-dom";
+import Link from "intergalactic/link";
+import LinkIcon from "intergalactic/icon/LinkExternal/l";
 import { Layout } from "../components/Layout";
 import { EmailReportsCard } from "../components/Widgets/EmailReportsCard";
 import { ReportsPreviewCard } from "../components/Widgets/ReportsPreviewCard";
-import { useNavigate } from "react-router-dom";
-import Link from "@semcore/ui/link";
-import LinkIcon from "@semcore/ui/icon/LinkExternal/l";
 import { PageHeader } from "../components/PageHeader";
 import { Paragraph } from "../components/Paragraph";
 

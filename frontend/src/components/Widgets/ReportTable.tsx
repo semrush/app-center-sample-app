@@ -1,5 +1,5 @@
 import React, { type FC } from "react";
-import DataTable from "@semcore/ui/data-table";
+import DataTable from "intergalactic/data-table";
 
 interface Props {
   data: ReportData;
@@ -37,7 +37,7 @@ export const ReportTable: FC<Props> = ({ data: { tables } }) => {
   return (
     <>
       {preparedTables.map(({ header, data }, index) => (
-        <DataTable key={index} data={data} mt={3}>
+        <DataTable aria-label="Report table" key={index} data={data} mt={3}>
           <DataTable.Head>
             {header.map((title, index) => (
               <DataTable.Column key={index} name={title}>
