@@ -12,6 +12,7 @@ import { AddCallbackCard } from "../components/Widgets/AddCallbackCard";
 import { ConfigCard } from "../components/Widgets/ConfigCard";
 import { PageHeader } from "../components/PageHeader";
 import { Paragraph } from "../components/Paragraph";
+import { ShowLoginModalCard } from "../components/Widgets/ShowLoginModalCard";
 
 export const Methods: FC = () => {
   const [productIdValues, setProductIdValues] = useState<string[]>([]);
@@ -45,6 +46,8 @@ export const Methods: FC = () => {
       <ReplaceUrlCard />
 
       <AddCallbackCard />
+
+      <ShowLoginModalCard />
 
       <SDKCard
         title="requestMainProductPurchase"

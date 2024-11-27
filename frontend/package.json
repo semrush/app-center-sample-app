@@ -34,7 +34,7 @@
     "webpack-cli": "5.1.4"
   },
   "dependencies": {
-    "@semcore/app-center-js-sdk": "0.0.6",
+    "@semcore/app-center-js-sdk": "0.0.7",
     "intergalactic": "15.108.0",
     "jose": "4.15.5",
     "prism-react-renderer": "^2.2.0",
